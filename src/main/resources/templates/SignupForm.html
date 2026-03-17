@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="ISO-8859-1">
+	<title>signup</title>
+</head>
+
+<body>
+
+	<h1> User Signup </h1>
+	<hr>
+
+	<form action="/signup" method="post">
+
+		FirstName <input type="text"     name="fname"> <br><br>
+		LastName <input type="text"      name="lname"> <br><br>
+		UserName <input type="text"      name="username"> <br><br>
+		Password <input type="password"  name="password"> <br><br>
+		
+		Gender   <input type="radio" name="gender" value="male"> Male
+			     <input type="radio" name="gender" value="female">Female <br><br>
+				 
+	    Country  <select name="country" >
+			           <option value="">select</option>
+					   <option value="nepal">Nepal</option>
+					   <option value="china">China</option>
+					   <option value="india">India</option>
+					   <option value="korea">Korea</option>
+		         </select>			 
+				 
+				 <br><br>
+				 
+		Hobby  <input type="checkbox" name="hobby" value="singing"> Singing
+			   <input type="checkbox" name="hobby" value="dancing"> Dancing
+		       <input type="checkbox" name="hobby" value="swimming"> Swimming
+		       <input type="checkbox" name="hobby" value="programming"> Programming	
+			   
+			   <br><br>
+			   
+	   
+	   DoB   <input type="date" name="dob"> <br><br>
+	   Office Time <input type="time" name="officeTime"> <br><br>
+	   
+	   Message  <textarea rows="5" cols="20"  name="message"></textarea>
+	   
+	   <br><br>		   
+
+		<input type="submit" value="Signup">
+
+	</form>
+
+</body>
+
+</html>
