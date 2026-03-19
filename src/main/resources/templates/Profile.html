@@ -1,22 +1,49 @@
 <!DOCTYPE html>
-<html xmlns:th="htts://www.thymeleaf.org">
+<html xmlns:th="https://www.thymeleaf.org">
+
 <head>
-<meta charset="ISO-8859-1">
-<title>profile</title>
+	<meta charset="ISO-8859-1">
+	<title>profile</title>
 </head>
+
 <body>
-	
-	   <h1> User Profile</h1>
-	   <hr>
-	   
-	   <p>FirstName: [[${user.fname}]]</p>
-	   <p>LastName : [[${user.lname}]]</p>
-	   <p>UserName : [[${user.username}]]</p>
-	   <p>Password : [[${user.password}]]</p>
-	   <p>Gender   : [[${gender}]]</p>
-	   <p>Hobby   : [[${hobby}]]</p>
-	   <p>Dob   : [[${dob}]]</p>
-	   
+
+	<h1> User Profile</h1>
+	<hr>
+
+	<p>FirstName: [[${user.fname}]]</p>
+	<p>LastName : [[${user.lname}]]</p>
+	<p>UserName : [[${user.username}]]</p>
+	<p>Password : [[${user.password}]]</p>
+	<p>Gender : [[${gender}]]</p>
+	<p>Hobby : [[${hobby}]]</p>
+	<p>Dob : [[${dob}]]</p>
+
+
+	<table width="100%" border="1px">
+
+		<thead>
+			<tr>
+				<th>FirstName</th>
+				<th>LastName</th>
+				<th>UserName</th>
+				<th>Password</th>
+			</tr>
+		</thead>
+
+		<tbody>
+
+			<tr th:each="u :  ${userList}">
+				<td>[[${u.fname}]]</td>
+				<td>[[${u.lname}]]</td>
+				<td>[[${u.username}]]</td>
+				<td>[[${u.password}]]</td>
+			</tr>
+
+		</tbody>
+
+	</table>
 
 </body>
+
 </html>

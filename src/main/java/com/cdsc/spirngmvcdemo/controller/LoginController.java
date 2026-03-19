@@ -1,5 +1,6 @@
 package com.cdsc.spirngmvcdemo.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -7,9 +8,13 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import com.cdsc.spirngmvcdemo.model.User;
+import com.cdsc.spirngmvcdemo.repository.UserRepository;
 
 @Controller
 public class LoginController {
+	
+	@Autowired
+	private UserRepository userRepo;
 	
 	@GetMapping("/login") // /user/login
 	public String getLogin() {
@@ -20,7 +25,10 @@ public class LoginController {
 	@PostMapping("/login")
 	public String postLogin(@ModelAttribute User user, Model model) {
 		
-		if (user.getUsername().equals("admin") && user.getPassword().equals("admin")) {
+		
+		User usr = userRepo.findByUsernameAndPassword(user.getUsername(), user.getPassword());
+		
+		if (usr != null) {
 			
 			  model.addAttribute("uname",user.getUsername());
 			 return "Home";
