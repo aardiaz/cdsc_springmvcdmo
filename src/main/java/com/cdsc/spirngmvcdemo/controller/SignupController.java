@@ -14,12 +14,16 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.cdsc.spirngmvcdemo.model.User;
 import com.cdsc.spirngmvcdemo.repository.UserRepository;
+import com.cdsc.spirngmvcdemo.service.UserService;
 
 @Controller
 public class SignupController {
 	
 	@Autowired
 	private UserRepository  userRepo;
+	
+	@Autowired
+	private UserService userService;
 	
 	@GetMapping("/signup")
 	public String getSignup() {
@@ -53,7 +57,7 @@ public class SignupController {
 	public String postSignup(@ModelAttribute User user, Model model) {
 		
 		//send user data in db
-		userRepo.save(user);
+		userService.userSignup(user);
 		
 		return "LoginForm";
 	}
