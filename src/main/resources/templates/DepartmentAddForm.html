@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="ISO-8859-1">
+	<title>department</title>
+
+	<!-- Latest compiled and minified CSS -->
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+
+	<!-- Latest compiled JavaScript -->
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+</head>
+
+<body>
+
+	<div class="container-fluid">
+
+		<div class="card">
+
+			<div class="card-header text-center bg-primary text-white">
+				<h4> Department Details</h4>
+			</div>
+
+			<div class="card-body">
+
+				<form action="/department/create"  method="post">
+				
+				<div class="row p-2">
+					<div class="col-4">Department Name</div>
+					<div class="col-6">
+						<input type="text" name="deptName" class="form-control">
+					</div>
+				</div>
+
+				<div class="row p-2">
+					<div class="col-4">Department Phone</div>
+					<div class="col-6">
+						<input type="text" name="deptPhone" class="form-control">
+					</div>
+				</div>
+
+				<div class="row p-2">
+					<div class="col-4">Department Head(HoD)</div>
+					<div class="col-6">
+						<input type="text" name="deptHead" class="form-control">
+					</div>
+				</div>
+
+				<div class="row p-2">
+					<div class="col-4"></div>
+					<div class="col-6">
+						<input type="submit" value="Add Department" class="btn btn-success">
+					</div>
+				</div>
+				
+				</form>
+
+			</div>
+
+
+			<div class="card-footer text-center  bg-warning">copyright@2026</div>
+		</div>
+
+	</div>
+
+
+
+</body>
+
+</html>
