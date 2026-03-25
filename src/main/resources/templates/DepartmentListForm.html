@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="ISO-8859-1">
+	<title>departmentlist</title>
+	
+
+	<!-- Latest compiled and minified CSS -->
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+
+	<!-- Latest compiled JavaScript -->
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+</head>
+
+		
+<body>
+
+	<div class="container-fluid">
+
+		<div class="card">
+
+			<div class="card-header text-center bg-primary text-white">
+				<h4> Department List</h4>
+			</div>
+
+			<div class="card-body">
+
+				<table class="table table-stripted">
+					
+				<!--	 <div>
+						 <input placeholder="enter data" type="text"  id="sdata"> <button onclick="searchDept();">Search</button>
+					 </div>-->
+
+					<thead>
+						<tr>
+							<th>Department Name </th>
+							<th>Department Phone</th>
+							<th>Department Head(HoD)</th>
+							<th>Action</th>
+						</tr>
+					</thead>
+
+					<tbody id="result">
+
+						
+						<tr  th:each="d:${deptList}">
+						<td>[[${d.deptName}]] </td>
+						<td>[[${d.deptPhone}]]</td>
+						<td>[[${d.deptHead}]]</td>
+						<td>
+							<a th:href="@{/department/edit(id=${d.deptId})}"> <input type="submit" value="Edit" class="btn btn-success" > </a>
+							<a th:href="@{/department/delete(id=${d.deptId})}"> <input type="submit" value="Delete" class="btn btn-danger"> </a>
+						</td>
+						</tr>
+
+					</tbody>
+
+				</table>
+
+			</div>
+
+
+			<div class="card-footer text-center  bg-warning">copyright@2026</div>
+		</div>
+
+	</div>
+	
+	<script>
+		
+		
+		function searchDept() {
+			
+		    $.ajax({
+		        url: "/department/search",
+		        type: "GET",
+		        data: {
+		            name: $("#sdata").val()
+		        },
+		        success: function(data) {
+		            let rows = "";
+		            for(let i = 0; i < data.length; i++) {
+		                rows += "<tr>";
+		                rows += "<td>" + data[i].deptId + "</td>";
+		                rows += "<td>" + data[i].deptName + "</td>";
+		                rows += "<td>" + data[i].deptPhone + "</td>";
+		                rows += "<td>" + data[i].deptHead + "</td>";
+		                rows += "</tr>";
+		            }
+		            $("#result").html(rows);
+		        }
+		    });
+		}
+		
+		
+		
+	</script>
+
+	
+</body>
+
+</html>

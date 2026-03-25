@@ -16,6 +16,6 @@ public interface DepartmentService {
 
 	List<Department> getAllDepartments();
 
-	List<Department> searchDepartment(String deptName);
+	List<Department> searchDepartment(String sdata);
 
 }
