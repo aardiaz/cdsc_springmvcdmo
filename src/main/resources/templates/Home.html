@@ -1,18 +1,16 @@
 <!DOCTYPE html>
-<html xmlns:th="https://www.thymeleaf.org" >
-<head>
-<meta charset="ISO-8859-1">
-<title>home</title>
-</head>
-<body>
+<html xmlns:th="https://www.thymeleaf.org">
 
-	   <h1> Welcome to Home Page </h1> 
-	     <h4> Hello : [[${uname}]] </h4>
-	   <hr>
-	   
-	   <a href="/department/create"> AddDepartment</a> | <a href="/department/list"> DepartmentList</a>
-	   
-	   <a href="/employee"> AddEmployee</a> 
-	   
+<head>
+	<meta charset="ISO-8859-1">
+	<title>home</title>
+
+</head>
+
+<body>
+	   <th:block th:insert="Header.html" ></th:block>
+
+
 </body>
+
 </html>
