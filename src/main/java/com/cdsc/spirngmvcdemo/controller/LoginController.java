@@ -11,6 +11,8 @@ import com.cdsc.spirngmvcdemo.model.User;
 import com.cdsc.spirngmvcdemo.repository.UserRepository;
 import com.cdsc.spirngmvcdemo.service.UserService;
 
+import jakarta.servlet.http.HttpSession;
+
 @Controller
 public class LoginController {
 	
@@ -27,14 +29,17 @@ public class LoginController {
 	}
 	
 	@PostMapping("/login")
-	public String postLogin(@ModelAttribute User user, Model model) {
+	public String postLogin(@ModelAttribute User user, Model model,HttpSession session) {
 		
 		
 		User usr = userService.userLogin(user.getUsername(), user.getPassword());
 		
 		if (usr != null) {
 			
-			  model.addAttribute("uname",user.getUsername());
+			  session.setAttribute("validuser", usr);
+			  session.setMaxInactiveInterval(300); // 5000 seconds
+			
+			  //model.addAttribute("uname",user.getUsername());
 			 return "Home";
 		}
 		
@@ -44,8 +49,8 @@ public class LoginController {
 	}
 	
 	@GetMapping("/logout")
-	public  String  logout() {
-		
+	public  String  logout(HttpSession session) {
+		session.invalidate();//session kill
 		return "LoginForm";
 	}
 	
