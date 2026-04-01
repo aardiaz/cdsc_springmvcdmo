@@ -11,9 +11,12 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.cdsc.spirngmvcdemo.model.Department;
 import com.cdsc.spirngmvcdemo.service.DepartmentService;
+import com.cdsc.spirngmvcdemo.utils.DepartmentExcelView;
+import com.cdsc.spirngmvcdemo.utils.DepartmentPdfView;
 
 @Controller
 @RequestMapping("/department")
@@ -65,9 +68,31 @@ public class DepartmentController {
 	}
 
 	@GetMapping("/search")
-	@ResponseBody
 	public List<Department> search(@RequestParam(required = false) String name) {
 		return deptService.searchDepartment(name);
+	}
+	
+	
+	
+	
+	@GetMapping("/excel")
+	public ModelAndView getExcel() {
+		
+		ModelAndView mv  = new ModelAndView();
+		mv.addObject("dList", deptService.getAllDepartments());
+		mv.setView(new DepartmentExcelView());
+		
+		return mv;
+	}
+	
+	@GetMapping("/pdf")
+	public ModelAndView getPdf() {
+		
+		ModelAndView mv  = new ModelAndView();
+		mv.addObject("dList", deptService.getAllDepartments());
+		mv.setView(new DepartmentPdfView());
+		
+		return mv;
 	}
 
 }
