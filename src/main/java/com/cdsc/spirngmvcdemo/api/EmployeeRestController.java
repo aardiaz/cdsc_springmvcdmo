@@ -3,14 +3,19 @@ package com.cdsc.spirngmvcdemo.api;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
+import org.springframework.web.context.annotation.RequestScope;
 
 import com.cdsc.spirngmvcdemo.model.Employee;
 import com.cdsc.spirngmvcdemo.model.Post;
@@ -69,6 +74,16 @@ public class EmployeeRestController {
 		postRepo.saveAll(List.of(posts));
 		
 		return "data loaded success";
+	}
+	
+	@GetMapping("/api/emp/posts")
+	public ResponseEntity<List<Post>> getPosts(@RequestParam(defaultValue = "0", value = "pageNo") int pageNo,@RequestParam(defaultValue = "20", value = "pageSize") int pageSize) {
+
+		Pageable  pageable = PageRequest.of(pageNo, pageSize);
+		
+		List<Post> posts = postRepo.findAll(pageable).getContent();
+
+		return ResponseEntity.ok(posts);
 	}
 
 }

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Post List</title>
+</head>
+<body>
+	<th:block th:insert="Header.html"></th:block>
+
+<h2>Post List</h2>
+
+   <div>
+		<form th:action="@{/posts}" method="get">
+			<label for="page">Page:</label>
+			<input type="number" id="page" name="page" min="0" th:value="${currentPage}">
+			<button type="submit">Go</button>
+		</form>
+   </div>
+
+<table class="table table-stripted">
+    <tr>
+        <th>ID</th>
+        <th>Title</th>
+        <th>Body</th>
+        <th>UserId</th>
+    </tr>
+
+    <tr th:each="p : ${postPage.content}">
+        <td th:text="${p.id}"></td>
+        <td th:text="${p.title}"></td>
+        <td th:text="${p.body}"></td>
+        <td th:text="${p.userId}"></td>
+    </tr>
+</table>
+
+<div>
+<nav aria-label="Page navigation example">
+  <ul class="pagination justify-content-center ">
+    <li class="page-item">
+      <a class="page-link" th:if="${postPage.hasPrevious()}"th:href="@{/posts(page=${currentPage - 1})}" aria-label="Previous">
+        <span aria-hidden="true">&laquo;</span>
+      </a>
+    </li>
+	
+	
+    <li class="page-item"  	th:each="i : ${#numbers.sequence(0, postPage.totalPages - 1)}" >
+		<a class="page-link" th:href="@{/posts(page=${i})}"
+		           th:text="${i + 1}"></a>
+			   
+	</li>
+    
+    <li class="page-item">
+      <a class="page-link" th:if="${postPage.hasNext()}"
+		       th:href="@{/posts(page=${currentPage + 1})}" aria-label="Next">
+        <span aria-hidden="true">&raquo;</span>
+      </a>
+    </li>
+  </ul>
+</nav>
+</div>
+
+</body>
+</html>
